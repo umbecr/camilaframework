@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uploader id="uploader.html" text="51" title="162" className="MultiUploader">
+	<class_definition filename="plugins/uploader.html/class.SimpleUploadProcessor.php" classname="SimpleUploadProcessor"/>
+	<resources>
+		<js file="plugins/uploader.html/class.MultiUploader.js" className="MultiUploader"/>
+		<js file="plugins/uploader.html/class.XHRUploader.js" className="XHRUploader"/>
+	</resources>
+	<registry_contributions>
+		<actions>
+			<action name="upload">
+				<pre_processing>					
+					<serverCallback methodName="preProcess"/>
+				</pre_processing>
+				<post_processing>					
+					<serverCallback methodName="postProcess" capture="true"/>
+				</post_processing>
+			</action>
+			<action name="get_drop_bg">
+				<processing>					
+					<serverCallback methodName="getDropBg"/>
+				</processing>
+			</action>
+		</actions>
+	</registry_contributions>	
+	<processing>	
+		<clientForm id="originalUploadForm"><![CDATA[
+			<!-- UPLOAD FORM -->
+			<form action="AJXP_SERVER_ACCESS" target="hidden_iframe" enctype="multipart/form-data" method="POST" id="originalUploadForm" style="text-align:left; display:none;" box_width="470">					
+			<table>
+				<tr>	
+					<td id="fileInputContainer" valign="top" align="right">
+						<input type="file" name="userfile_1" class="dialogFocus">
+						<div id="uploadBrowseButton" class="fakeUploadButton" align="center"><img src="AJXP_THEME_FOLDER/images/actions/22/view_list_details.png"><br/>AJXP_MESSAGE[171]</div>
+						<div id="uploadSendButton" class="fakeUploadButton" align="center"><img src="AJXP_THEME_FOLDER/images/actions/22/yast_backup.png"><br/>AJXP_MESSAGE[77]</div>
+					</td>
+					<td rowspan="2" id="uploadFilesListContainer" valign="top">
+						<div id="upload_files_list" class="uploadFilesList"></div>
+					</td>
+				</tr>
+				<tr>	
+					<td valign="bottom" align="right" id="optClosButtonsContainer">
+						<div class="fakeUploadButton fakeOptionButton" id="uploadOptionsButton" align="center">AJXP_MESSAGE[310] <span style="display:none;">[x]</span></div>
+						<div class="fakeUploadButton fakeOptionButton" id="uploadCloseButton" align="center">AJXP_MESSAGE[86]</div>
+					</td>
+				</tr>
+			</table>
+			<input type="hidden" name="get_action" value="upload">	
+			<input type="hidden" name="simple_uploader" value="true">	
+			</form>
+			<script language="javascript">$('originalUploadForm').hide();</script>
+		]]></clientForm>
+		<dialogOnOpen><![CDATA[ 
+		var tmpFunction = function(oForm){
+			if(typeof File != "undefined" && typeof (new XMLHttpRequest()).upload != "undefined"  && 'draggable' in new Element('span')){
+				ajaxplorer.actionBar.multi_selector = new XHRUploader(oForm);
+			}else{
+				ajaxplorer.actionBar.multi_selector = new MultiUploader(oForm);
+			}
+		};
+		]]></dialogOnOpen>
+		<extensionOnInit><![CDATA[		
+		if(typeof File != "undefined" && typeof (new XMLHttpRequest()).upload != "undefined"  && 'draggable' in new Element('span')){
+			var dropzone = $('content_pane');
+			dropzone.addClassName('droparea');
+			var dragOverFunc = function(event) {
+  				event.preventDefault();
+			};
+			var dropFunc = function(event) {
+  				event.preventDefault();
+  				if(event.dataTransfer.files.length){
+	  				window.UploaderDroppedFiles = event.dataTransfer.files;
+	  				ajaxplorer.actionBar.fireAction('upload');
+	  			}
+			};
+			dropzone.addEventListener("dragover", dragOverFunc, true);
+			dropzone.addEventListener("drop", dropFunc, true);
+			document.observeOnce("ajaxplorer:trigger_repository_switch", function(){				
+				dropzone.removeClassName('droparea');
+				dropzone.removeEventListener("dragover", dragOverFunc, true);
+				dropzone.removeEventListener("drop", dropFunc, true);
+			});
+		}
+		]]></extensionOnInit>		
+	</processing>
+	<dependencies>
+		<!-- Stream Wrapper Access -->
+		<activePlugin pluginName="access.fs|access.ftp|access.demo|access.remote_fs"/>
+	</dependencies>					
+</uploader>

@@ -1,0 +1,10 @@
+INSTALL
+
+To install adodb-xmlschema, simply copy the adodb-xmlschema.inc.php file 
+and the xsl directory into your ADODB directory.
+
+------------------------------------------------------------------------------------------------------------------------------------
+If you have any questions or comments, please visit the adodb-xmlschema 
+project site on Sourceforge at http://sourceforge.net/projects/adodb-xmlschema/.
+
+$Id: INSTALL,v 1.2 2004/02/06 18:38:12 richtl Exp $
