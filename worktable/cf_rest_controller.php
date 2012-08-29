@@ -1,8 +1,26 @@
 <?php
 
+  /* This File is part of Camila PHP Framework
+   Copyright (C) 2006-2012 Umberto Bresciani
+   
+   Camila PHP Framework is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+   
+   Camila PHP Framework is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   
+   You should have received a copy of the GNU General Public License
+   along with Camila PHP Framework; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA */
+
+
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
-    header('WWW-Authenticate: Basic realm="Camila Framework"');
+    header('WWW-Authenticate: Basic realm="Camila Framework Authentication"');
     header('HTTP/1.0 401 Unauthorized');
     echo 'Authentication required';
     exit;
@@ -20,16 +38,20 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     $_REQUEST['username'] = $_SERVER['PHP_AUTH_PW'];
     $_REQUEST['camila_pwloginbox'] = 'yes';
     $_REQUEST['submit'] = true;
-    $_REQUEST['camila_json'] = '';
+
+    if (isset($_REQUEST['camila_xml']))
+        $_REQUEST['camila_xml'] = '';
+    else
+        $_REQUEST['camila_json'] = '';
     $_REQUEST['camila_rest'] = '';
     $_REQUEST['camila_pagnum'] = -1;
-    
+
     $urlParts = parse_url($url);
     // substring from 1 to avoid leading slash
     $pathParts = explode('/', substr($urlParts['path'], 1));
     
-    $collection = $pathParts[2];
-    $collectionId = $pathParts[3];
+    $collection = $pathParts[array_search('rest', $pathParts)+1];
+    $collectionId = $pathParts[array_search('rest', $pathParts)+2];
     
     switch ($collection) {
     case 'worktable':
