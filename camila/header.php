@@ -58,7 +58,7 @@ require('camila.php');
 
   ini_set("magic_quotes_runtime", 0);
   $old_error_handler = set_error_handler('camila_error_handler');
-  session_start();
+if (!isset($_REQUEST['camila_session_id']))  session_start();
 
   $_CAMILA['user_level'] = CAMILA_DEFAULT_USER_LEVEL;
   $_CAMILA['user_group'] = '';
@@ -253,8 +253,7 @@ require('camila.php');
         $query = 'SELECT * FROM ' . CAMILA_TABLE_USERS . ' WHERE username= ' . $_CAMILA['db']->qstr($_COOKIE[CAMILA_APPLICATION_NAME . '_username']);
 //      $query = 'SELECT * FROM ' . CAMILA_TABLE_USERS . ' WHERE session_id= ' . $_CAMILA['db']->qstr(session_id());
   else
-      $query = 'SELECT * FROM ' . CAMILA_TABLE_USERS . ' WHERE session_id=' . $_CAMILA['db']->qstr(session_id()) . ' AND session_end>' . $_CAMILA['db']->DBTimeStamp(time());
-
+      $query = 'SELECT * FROM ' . CAMILA_TABLE_USERS . ' WHERE session_id=' . $_CAMILA['db']->qstr(!isset($_REQUEST['camila_session_id'])?session_id():$_REQUEST['camila_session_id']) . ' AND session_end>' . $_CAMILA['db']->DBTimeStamp(time());
 
   $result = $_CAMILA['db']->Execute($query);
   if ($result === false) {
@@ -482,7 +481,10 @@ require('camila.php');
   } elseif (isset($_REQUEST['camila_gva'])) {
       include(CAMILA_DIR . 'export/camila_gva.php');
       $_CAMILA['page'] = new CAMILA_GVA_deck($_CAMILA['page_short_title'], HAW_ALIGN_CENTER, HAW_OUTPUT_AUTOMATIC);  
-  }else
+  } elseif (isset($_REQUEST['camila_xml'])) {
+      include(CAMILA_DIR . 'export/camila_xml.php');
+      $_CAMILA['page'] = new CAMILA_XML_deck($_CAMILA['page_short_title'], HAW_ALIGN_CENTER, HAW_OUTPUT_AUTOMATIC);  
+  } else
       $_CAMILA['page'] = new CHAW_deck($_CAMILA['page_short_title'], HAW_ALIGN_LEFT, $_CAMILA['output']);
 
   if (session_id())

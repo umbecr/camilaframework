@@ -128,7 +128,7 @@ camila.worktable.mapping.worktable.admin = id as camila_worktable_delete=DELETE#
 camila.worktable.sysfields.mapping = created=Created#last_upd=Last Update#last_upd_by=Last Upd. User#last_upd_src=Last Upd. Source#last_upd_by_name=Last Upd. User Name#last_upd_by_surname=Last Upd. User Surname#mod_num=Mod. Num.#id=Row Id#created_by=Created by#created_src=Created Source#created_by_surname=Created User Surname#created_by_name=Created User Name#cf_bool_is_special=marked as special#cf_bool_is_selected=selected
 camila.worktable.categories.mapping = short_title=Category name#full_title=Category description
 
-camila.worktable.options.fieldtype = string;String,string-listofvalues;String - List of Values,date;Date,datetime;Date and Time,integer;Integer Number,autoincrement;Integer Number (autoincrement),integer-listofvalues;Integer Number - List of values,phonenumber;Phone Number,hyperlink;Web Link,textarea;Long Text,formula,Formula
+camila.worktable.options.fieldtype = string;String,string-listofvalues;String - List of Values,date;Date,datetime;Date and Time,integer;Integer Number,autoincrement;Integer Number (autoincrement),integer-listofvalues;Integer Number - List of values,phonenumber;Phone Number,hyperlink;Web Link,textarea;Long Text,formula;Formula,query;Query
 camila.worktable.options.order.dir = asc;Ascending,desc;Descending
 camila.worktable.options.yesno = y;Yes,n;No
 camila.worktable.options.noyes = n;No,y;Yes
@@ -182,6 +182,8 @@ camila.worktable.share.key = Share Key
 camila.worktable.share.caninsert = Can insert data if shared
 camila.worktable.share.canupdate = Can update data if shared
 camila.worktable.share.candelete = Can delete data if shared
+
+camila.worktable.query.count = count
 
 camila.worktable.confirm = CONFIRM INSERTED DATA
 

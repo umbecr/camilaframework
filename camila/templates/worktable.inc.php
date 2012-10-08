@@ -186,6 +186,7 @@ if (camila_form_in_update_mode(${table})) {
       }
 
       $report->formulas=${formulas}
+      $report->queries=${queries}
 
       ${menuitems_script}
 

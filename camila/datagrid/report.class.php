@@ -26,6 +26,7 @@
   require_once(CAMILA_DIR . 'datagrid/elements/report/timestamp.php');
   require_once(CAMILA_DIR . 'datagrid/elements/report/icon.php');
   require_once(CAMILA_DIR . 'datagrid/elements/report/formula.php');
+  require_once(CAMILA_DIR . 'datagrid/elements/report/query.php');
 
   
   
@@ -156,7 +157,8 @@
 
       var $menuitems = Array();
       var $formulas = Array();
-      
+      var $queries = Array();
+
       
       function report($stmt, $title, $orderby = '', $direction = 'asc', $mapping = '', $ordermapping = null, $keys = '', $defaultfields, $filter, $canupdate = true, $candelete = false)
       {
@@ -619,8 +621,11 @@ if ($_CAMILA['db']->databaseType == 'sqlite' && count($this->tables)==1)
 
 
               $type = $this->res->MetaType($curr_field->type);
-              if ($this->res->MetaType($this->adoMetaColumns[strtoupper($curr_field->name)]->type) != '')
+
+              if ($_CAMILA['db']->databaseType == 'sqlite' && count($this->tables)==1 && $this->adoMetaColumns[strtoupper($curr_field->name)]->type != '')
+
                   $type = $this->res->MetaType($this->adoMetaColumns[strtoupper($curr_field->name)]->type);
+
 
 
               reset($this->tables);
@@ -636,6 +641,8 @@ if (strpos($curr, 'cf_bool_') !== false)
                       $this->fields[$curr] = new report_icon($curr, $fcurr);
                   else if (strpos($curr, 'cf_formula_') !== false)
                       $this->fields[$curr] = new report_formula($curr, $fcurr);
+                  else if (strpos($curr, 'cf_query_') !== false)
+                      $this->fields[$curr] = new report_query($curr, $fcurr);
 
                   
  elseif ($type == 'I')
@@ -1014,7 +1021,7 @@ global $_CAMILA;
               $addfilterconds = '';
               reset($this->fields);
               while ($fld = each($this->fields)) {
-                  if ($fld[1]->print && $fld[1]->onprint == '' && substr($fld[1]->field, 0, 10) != 'camilakey_' && substr($fld[1]->field, 0, 8) != 'cf_bool_' && substr($fld[1]->field, 0, 11) != 'cf_formula_' && !($fld[1]->field == 'count(*)' && ($this->gbyconditionpresent))) {
+                  if ($fld[1]->print && $fld[1]->onprint == '' && substr($fld[1]->field, 0, 10) != 'camilakey_' && substr($fld[1]->field, 0, 8) != 'cf_bool_' && substr($fld[1]->field, 0, 11) != 'cf_formula_'&& substr($fld[1]->field, 0, 11) != 'cf_query_' && !($fld[1]->field == 'count(*)' && ($this->gbyconditionpresent))) {
                       $options .= '_' . $fld[1]->metatype . '_' . $fld[1]->field . ';' . $fld[1]->title . ',';
                       $options_array[$count][0] = '_' . $fld[1]->metatype . '_' . $fld[1]->field;
                       $options_array[$count][1] = $fld[1]->title;

@@ -30,7 +30,8 @@ function create_page()
 
     $this->custom_properties = Array('camila_record_count'=>$_CAMILA['report_record_count']);
 
-    $this->_gva_responseHandler = 'camila_gva_set_response';
+//    if ($_REQUEST['camila_response_handler'] != '')
+        $this->_gva_responseHandler = $_REQUEST['camila_response_handler'];
     parent::create_page();
 }
 

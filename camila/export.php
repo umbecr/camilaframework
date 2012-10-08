@@ -30,8 +30,10 @@
       $mySelect->add_option(camila_get_translation('camila.export.download'), 'download');
       
       if (!CAMILA_FM_EXTFS_ENABLED) {
+if (!CAMILA_FM_EXPORT_SAVETO_DISABLED)
+{
           $mySelect->add_option(camila_get_translation('camila.export.saveto') . ' ' . camila_get_translation('camila.documents'), '/', $_REQUEST['camila_export_last_action'] == '/' ? HAW_SELECTED : HAW_NOTSELECTED);
-          
+
           $arr = $fs->scandir(CAMILA_FM_ROOTDIR, true, false);
           sort($arr);
           foreach ($arr as $value) {
@@ -43,6 +45,7 @@
                       $mySelect->add_option(camila_get_translation('camila.export.saveto') . ' ' . camila_get_translation('camila.documents') . '/' . $item, '/' . $item);
               }
           }
+}
       } else {
           $node = $fs->_tree_get_group_root_node($_CAMILA['adm_user_group']);
           $attributes = array('name');

@@ -547,6 +547,8 @@
 
 function camila_worktable_filter_decode($str, $wt_id)
 {
+    global $_CAMILA;
+    $adoMetaColumns=$_CAMILA['db']->MetaColumns(camila_worktable_get_table_name($wt_id));
 
     $connOr = ' ' . camila_get_translation('camila.report.or') . ' ';
     $connAnd = ' ' . camila_get_translation('camila.report.and') . ' ';
@@ -586,7 +588,7 @@ function camila_worktable_filter_decode($str, $wt_id)
             $cond = substr($criteria, strlen($field)+3, stripos(substr($criteria, strlen($field)+3), "\"")-1);
             $value = substr($criteria, strlen($field)+strlen($cond)+5,-2);
             $colInfo = camila_worktable_get_col_name($wt_id, $field);
-            $result['camila_w'.($i+1).'f'] = '_'.camila_worktable_get_schema_type($colInfo['type']).'_'.$colInfo['col_name'];
+            $result['camila_w'.($i+1).'f'] = '_'.$_CAMILA['db']->MetaType($adoMetaColumns[strtoupper($colInfo['col_name'])]->type).'_'.$colInfo['col_name'];
             $result['camila_w'.($i+1).'c'] = array_search($cond, $condArray);
             $result['camila_w'.($i+1).'v'] = $value;
 
@@ -597,7 +599,7 @@ function camila_worktable_filter_decode($str, $wt_id)
             $cond = substr($criteria, strlen($field)+3, stripos(substr($criteria, strlen($field)+3), "\"")-1);
             $value = substr($criteria, strlen($field)+strlen($cond)+5,-2);
             $colInfo = camila_worktable_get_col_name($wt_id, $field);
-            $result['camila_w1f'] = '_'.camila_worktable_get_schema_type($colInfo['type']).'_'.$colInfo['col_name'];
+            $result['camila_w1f'] = '_'.$_CAMILA['db']->MetaType($adoMetaColumns[strtoupper($colInfo['col_name'])]->type).'_'.$colInfo['col_name'];
             $result['camila_w1v'] = $value;
             $result['camila_w1c'] = array_search($cond, $condArray);
     }
@@ -637,6 +639,8 @@ function camila_worktable_get_schema_type($type)
     return $schema_type;
 }
 
+
+
 function camila_worktable_get_col_name($wt_id, $name)
 {
     global $_CAMILA;
@@ -644,6 +648,22 @@ function camila_worktable_get_col_name($wt_id, $name)
     if ($result === false)
         camila_error_page(camila_get_translation('camila.sqlerror') . ' ' . $_CAMILA['db']->ErrorMsg());
     return $result->fields;
+}
+
+function camila_worktable_get_table_name($wt_id)
+{
+    return CAMILA_TABLE_WORKP.$wt_id;
+}
+
+function camila_worktable_get_table_id($name)
+{
+    global $_CAMILA;
+
+    $result = $_CAMILA['db']->Execute('select page_url from ' . CAMILA_TABLE_PLANG . ' where short_title='.$_CAMILA['db']->qstr($name) . ' AND page_url NOT LIKE '.$_CAMILA['db']->qstr('cf_app.php?cat%') . ' and lang='.$_CAMILA['db']->qstr($_CAMILA['lang']));
+        if ($result === false)
+            camila_error_page(camila_get_translation('camila.sqlerror') . ' ' . $_CAMILA['db']->ErrorMsg());
+
+    return $result->fields['page_url'];
 }
 
 

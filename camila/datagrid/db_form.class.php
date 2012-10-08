@@ -1,7 +1,7 @@
 <?php
 
 /* This File is part of Camila PHP Framework
-   Copyright (C) 2006-2010 Umberto Bresciani
+   Copyright (C) 2006-2012 Umberto Bresciani
 
    Camila PHP Framework is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -456,6 +456,7 @@ require_once(CAMILA_DIR . 'datagrid/form.class.php');
 	              $myLink->set_br(2);
 	              $_CAMILA['page']->add_link($myLink);
               }
+
 
               if (isset($_REQUEST['submitandnew_button_header']) && $this->caninsert) {
 

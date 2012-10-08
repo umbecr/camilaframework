@@ -252,7 +252,7 @@ class Latin1UTF8 {
 class configurator {
 
     var $default_maxlength = Array('integer' => 5, 'string' => 255, 'date' => '10', 'hyperlink' => 250);
-    var $default_size = Array('integer' => 5, 'string' => 30, 'date' => 10, 'hyperlink' => 30, 'phonenumber' => 30, 'autoincrement' => 5, 'formula' => 1);
+    var $default_size = Array('integer' => 5, 'string' => 30, 'date' => 10, 'hyperlink' => 30, 'phonenumber' => 30, 'autoincrement' => 5, 'formula' => 1, 'query' => 1);
     var $column_size = Array('C' => 250);
 
     var $fields = Array();
@@ -564,8 +564,8 @@ class configurator {
                         $curr = 'hyperlink';
 
                     if ($curr != '') {
-                        $safefmt = strtolower(preg_replace('/[^a-z0-9]/', '', $data->read16bitstring($data->sheets[$sheetnum]['cellsInfo'][$j][$i]['format'])));
-			//echo $data->read16bitstring($data->sheets[$sheetnum]['cellsInfo'][$j][$i]['format']);
+                        $safefmt = strtolower(preg_replace('/[^a-z0-9]/', '', $data->read16bitstring($data->sheets[$sheetnum]['cellsInfo'][$j][$i]['format'],0)));
+			//echo $data->read16bitstring($data->sheets[$sheetnum]['cellsInfo'][$j][$i]['format'],0);
 
                         if ($curr == 'unknown' && $safefmt == $datefmt)
                             $curr = 'date';
@@ -854,8 +854,11 @@ class configurator {
             }
         }
 
-        $myText = new CHAW_text(camila_get_translation('camila.wizard.configurecolumns'));
-        $_CAMILA['page']->add_text($myText);
+        if (!isset($_REQUEST['camila_delete']) && $id!='')
+        {
+            $myText = new CHAW_text(camila_get_translation('camila.wizard.configurecolumns'));
+            $_CAMILA['page']->add_text($myText);
+        }
 
         if (!camila_form_in_update_mode(CAMILA_TABLE_WORKC)) {
 
@@ -923,7 +926,7 @@ class configurator {
 
         $dbform = new dbform(CAMILA_TABLE_WORKC, 'id', 'sequence,name,name_abbrev,type,listbox_options,maxlength,required,readonly,must_be_unique,default_value,field_options,autosuggest_wt_name,autosuggest_wt_colname', 'sequence', 'asc', '(wt_id='.$_CAMILA['db']->qstr($id). ' and is_deleted<>'.$_CAMILA['db']->qstr('y').')', true, false, true, false, false);
         $dbform->mapping=camila_get_translation('camila.worktable.mapping.worktable');
-
+        $dbform->drawheadersubmitbutton = true;
 
         new form_hidden($dbform, 'id');
         new form_hidden($dbform, 'wt_id', $id);
@@ -950,12 +953,14 @@ class configurator {
         $dbform->formupdatelinktext = camila_get_translation('camila.worktable.field.formupdatelinktext');
 
         $dbform->process();
-
         $dbform->draw();
 
-        $myLink = new CHAW_link(camila_get_translation('camila.worktable.field.addnew'), 'cf_worktable_wizard_step2.php?camila_custom=' . $id . '&camila_addfield=y');
-        $myLink->set_br(2);
-        $_CAMILA['page']->add_link($myLink);
+        if ($id!='')
+        {
+            $myLink = new CHAW_link(camila_get_translation('camila.worktable.field.addnew'), 'cf_worktable_wizard_step2.php?camila_custom=' . $id . '&camila_addfield=y');
+            $myLink->set_br(2);
+            $_CAMILA['page']->add_link($myLink);
+        }
 
 
     }
@@ -1162,6 +1167,7 @@ class configurator {
 
         $this->menuitems_script = '';
         $this->formulas = 'Array(';
+        $this->queries = 'Array(';
 
         $resultTable = $this->db->Execute('select * from ' . CAMILA_TABLE_WORKT . ' where id='.$this->db->qstr($id));
         if ($resultTable === false)
@@ -1196,6 +1202,7 @@ class configurator {
         $rcount = 0;
         $vcount = 0;
         $fcount = 0;
+        $qcount = 0;
 
         while (!$result->EOF) {
             if ($vcount > 0)
@@ -1212,8 +1219,17 @@ class configurator {
             }
 
 
-            if ($result->fields['type'] != 'formula')
+            if ($result->fields['type'] != 'formula' && $result->fields['type'] != 'query')
                 $report_fields .= $result->fields['col_name'];
+            else if ($result->fields['type'] == 'query') {
+                $report_fields .= $result->fields['col_name'].' as cf_query_'.$result->fields['col_name'];
+                if ($qcount>0)
+                    $this->queries.=',';
+
+                $this->queries .= '\''.'cf_query_'.$result->fields['col_name'].'\'=>\''.$result->fields['field_options'].'\'';
+                $qcount++;
+
+            }
             else {
                 $report_fields .= $result->fields['col_name'].' as cf_formula_'.$result->fields['col_name'];
                 if ($fcount>0)
@@ -1227,18 +1243,29 @@ class configurator {
 
             if ($result->fields['visible'] == 'y') {
 
-                if ($result->fields['type'] != 'formula')
+                if ($result->fields['type'] != 'formula' && $result->fields['type'] != 'query')
                    $default_fields .= $result->fields['col_name'];
+                else if ($result->fields['type'] == 'query')
+                   $default_fields .= $result->fields['col_name'].' as cf_query_'.$result->fields['col_name'];
                 else
                    $default_fields .= $result->fields['col_name'].' as cf_formula_'.$result->fields['col_name'];
 
                 $vcount++;
             }
 
-            if ($result->fields['type'] != 'formula')
+            if ($result->fields['type'] != 'formula' && $result->fields['type'] != 'query')
             {
                 $mappingAbbrev .= $result->fields['col_name'] . '=' . $this->escape($result->fields['name_abbrev']);
                 $mapping .= $result->fields['col_name'] . '=' . $this->escape($result->fields['name']);
+            }
+            else if ($result->fields['type'] == 'query')
+            {
+                $mappingAbbrev .= 'cf_query_'.$result->fields['col_name']. '=' . $this->escape($result->fields['name_abbrev']);
+                $mappingAbbrev .= '#'.$result->fields['col_name'].' as cf_query_'.$result->fields['col_name']. '=' . $this->escape($result->fields['name_abbrev']);
+
+                $mapping .= 'cf_formula_'.$result->fields['col_name'] . '=' . $this->escape($result->fields['name']);
+                $mapping .= '#'.$result->fields['col_name'].'as cf_query_'.$result->fields['col_name'] . '=' . $this->escape($result->fields['name']);
+
             }
             else
             {
@@ -1249,6 +1276,7 @@ class configurator {
                 $mapping .= '#'.$result->fields['col_name'].'as cf_formula_'.$result->fields['col_name'] . '=' . $this->escape($result->fields['name']);
 
             }
+
 
             $rcount++;
 
@@ -1281,6 +1309,14 @@ class configurator {
 
                 $extid = $result2->fields['id'];
                 $table = $result2->fields['tablename'];
+                $exttable = false;
+
+                if (substr($tablename,0,1) == '[')
+                {
+                    $exttable = true;
+                    $table = substr($tablename,1,-1);
+                }
+
 
                 $result2 = $this->db->Execute('select sequence,col_name, autosuggest_wt_colname from ' . CAMILA_TABLE_WORKC . ' where (autosuggest_wt_name=' . $this->db->qstr($tablename) . ' and wt_id=' . $this->db->qstr($id). ' and is_deleted<>'.$this->db->qstr('y').')');
                 if ($result2 === false)
@@ -1292,11 +1328,15 @@ class configurator {
                    $sequence = $result2->fields['sequence'];
                    $suggcolname = $result2->fields['autosuggest_wt_colname'];
 
+                   //search for col_names
                    $result3 = $this->db->Execute('select col_name from ' . CAMILA_TABLE_WORKC . ' where (name=' . $this->db->qstr($suggcolname) . ' and wt_id=' . $this->db->qstr($extid) . ' and is_deleted<>'.$this->db->qstr('y').')');
                    if ($result3 === false)
                        camila_error_page(camila_get_translation('camila.sqlerror') . ' ' . $this->db->ErrorMsg());
    
                    $col_name = $result3->fields['col_name'];
+
+                   if ($exttable)
+                       $col_name = $suggcolname;
 
                    $suggfield = $col_name;
                    $infofields = '';
@@ -1325,6 +1365,9 @@ class configurator {
                        if ($col_name != '')
                            $infofields .= ',' . $col_name;
 
+                       if ($exttable)
+                           $infofields .= ',' . $suggcolname;
+
                        $result4->MoveNext();                     
                    }
 
@@ -1348,6 +1391,9 @@ class configurator {
                        if ($col_name != '')
                            $infofields .= ',' . $col_name;
 
+                       if ($exttable)
+                           $infofields .= ',' . $suggcolname;
+
                        $result4->MoveNext();                     
                    }
 
@@ -1370,9 +1416,11 @@ class configurator {
         }
 
         $this->formulas .= ');';
+        $this->queries .= ');';
 
         $t->setVariable('menuitems_script', $this->menuitems_script);
         $t->setVariable('formulas', $this->formulas);
+        $t->setVariable('queries', $this->queries);
         $t->setVariable('autosuggest_script', $script);
         $t->setVariable('table', CAMILA_TABLE_WORKP.$id);
         $t->setVariable('report_fields', $report_fields);
@@ -1549,6 +1597,11 @@ class configurator {
                 $script = "new form_textbox(\$form, '$field', '$name', $required, $size, $maxlength, '$validation');";
                 break;
 
+            case 'query';
+                $this->add_require('textbox');
+                $script = "new form_textbox(\$form, '$field', '$name', $required, $size, $maxlength, '$validation');";
+                break;
+
             default:
                 $this->add_require('textbox');
                 $script = "new form_textbox(\$form, '$field', '$name', $required, $size, $maxlength, '$validation');";
@@ -1563,7 +1616,7 @@ class configurator {
         }
 
 
-        if ($rs['type']=='formula')
+        if ($rs['type']=='formula' || $rs['type']=='query')
         {
                 $script .= "\nif (is_object(\$form->fields['$field'])) \$form->fields['$field']->updatable = false;";
 

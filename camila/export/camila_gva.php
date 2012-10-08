@@ -86,7 +86,8 @@
 
                           case 'json':
 
-                              echo $this->_gva_responseHandler."(";
+                              if ($this->_gva_responseHandler != '')
+                                  echo $this->_gva_responseHandler."(";
                               $cols = array();
 
                               $a = 0;
@@ -156,7 +157,8 @@
                               $json = new Services_JSON();
                               echo $json->encode($jarr);
 
-                              echo ");";
+                              if ($this->_gva_responseHandler != '')
+                                  echo ");";
 
                               break;
                       }
