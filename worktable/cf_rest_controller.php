@@ -103,8 +103,54 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
         }
         
         break;
-    }
     
+
+    case 'persistenceChanges':
+
+
+//{"now":1279888110421, "updates": [ {"id": "F89F99F7B887423FB4B9C961C3883C0A", "name": "Main project", "_lastChange": 1279888110370 } ] }
+        
+        if ($collectionId != '') {
+            require('../camila/header.php');            
+
+            header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+            header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // always modified
+            header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+            header("Pragma: no-cache"); // HTTP/1.0
+            header("Content-Type: application/json");
+
+            $query = 'select * from ' . CAMILA_APPLICATION_PREFIX.'worktable'.$collectionId;
+
+            if ($_REQUEST['since']>0)
+                $query.=' WHERE last_upd>'.$_CAMILA['db']->UserDate($_REQUEST['since'], $_CAMILA['db']->fmtTimeStamp);
+
+            $result = $_CAMILA['db']->Execute($query);
+            if ($result === false)
+                 camila_error_page(camila_get_translation('camila.sqlerror') . ' ' . $_CAMILA['db']->ErrorMsg());
+
+            $count = 0;
+             while (!$result->EOF) {
+                 $count++;
+                 $result->fields['_lastChange']=$_CAMILA['db']->UnixTimeStamp($result->fields['last_upd']);
+                 $fields[] = $result->fields;
+                 $result->MoveNext();
+            }
+
+            if ($count > 0) {
+                $json = new Services_JSON();
+                camila_utf8_encode_array($fields);
+                echo $json->encode(Array('now'=>time(),'updates' => $fields));
+            } else {
+                echo "{\"now\":".time()."}";
+            }
+
+            exit();            
+        } else {
+            
+        }
+        
+        break;
+    }
     
 }
 

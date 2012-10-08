@@ -8,7 +8,6 @@ define('CAMILA_HOMEDIR', dirname(CAMILA_VAR_ROOTDIR));
 define('CAMILA_HOMEURL', dirname($_SERVER['SCRIPT_URI']));
 define('CAMILA_HELPURL','');
 
-
 $dbpath = urlencode(CAMILA_VAR_ROOTDIR.'/db/camila.db');
 $dbpath = str_replace ("+", "%20", $dbpath);
 
@@ -51,6 +50,8 @@ define('CAMILA_FM_PUBDIR', CAMILA_FM_ROOTDIR.'/public');
 define('CAMILA_FM_PREFIX', 7);
 define('CAMILA_FM_DEFAULT_FOLDER', 'Allegati');
 define('CAMILA_FM_MAX_UPLOAD_SIZE', 5000000);
+define('CAMILA_FM_EXPORT_SAVETO_DISABLED', false);
+
 
 define('CAMILA_SHOW_ERRORS', false);
 define('CAMILA_BAN_IP_SECS', 20);

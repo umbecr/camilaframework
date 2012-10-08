@@ -122,8 +122,12 @@ if (isset($_REQUEST['camila_autosuggest'])) {
 
     $where = $_REQUEST['field'].' LIKE '.$_CAMILA['db']->qstr('%' . $_REQUEST['input'].'%');
 
+
     if ($_REQUEST['objectid'] != '')
         $where = 'id='.$_CAMILA['db']->qstr($_REQUEST['objectid']);
+
+    if ($_CAMILA['user_visibility_type']=='personal')
+        $where .= ' and '.CAMILA_WORKTABLE_EXT_TABLE_PERSONAL_VISIBILITY_FIELD.'='.$_CAMILA['db']->qstr($_CAMILA['user']);
 
     $result = $_CAMILA['db']->SelectLimit($query . ' from ' . $_REQUEST['table'] . ' where ' . $where, $_REQUEST['maxresults']);
     if ($result === false)
