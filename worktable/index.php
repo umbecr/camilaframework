@@ -84,9 +84,9 @@ if (strpos($result->fields['url'], 'gby')===false)
 
     $pos = strrpos($result->fields['url'], '?');
     if ($pos !== false)
-        $url = $result->fields['url']."&camila_json&tqx=reqId:".$result->fields['id'];
+        $url = $result->fields['url']."&camila_json&camila_response_handler=camila_gva_set_response&tqx=reqId:".$result->fields['id'];
     else
-        $url = $result->fields['url']."?camila_json&tqx=reqId:".$result->fields['id'];
+        $url = $result->fields['url']."?camila_json&camila_response_handler=camila_gva_set_response&tqx=reqId:".$result->fields['id'];
 
     $code .= "<script defer src = '".$url."'>\n";
     $code .= "</script>\n";

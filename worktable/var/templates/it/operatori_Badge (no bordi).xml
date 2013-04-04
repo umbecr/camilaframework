@@ -9,16 +9,16 @@
 <page font="helvetica">
 
 	<!-- <box top="13.5+54*0" left="15" right="15+85" bottom="13.5+54*1" /> -->
-	<paragraph top="13.5+54*0+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
+	<paragraph top="13.5+54*0+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">CAMPO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*0+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*0+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*0+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*0+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*0+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*0+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*0+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -31,16 +31,16 @@
 <!-- $BeginBlock row1 -->
 
 	<!-- <box top="13.5+54*0" left="15" right="15+85" bottom="13.5+54*1" /> -->
-	<paragraph top="13.5+54*0+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
+	<paragraph top="13.5+54*0+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">CAMPO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*0+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*0+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*0+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*0+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*0+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*0+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*0+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -53,13 +53,13 @@
 	<paragraph top="13.5+54*0+6" left="15+95+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*0+8" left="15+95+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*0+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*0+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*0+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*0+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
 	<paragraph top="13.5+54*0+25" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*0+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*0+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*0+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*0+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -72,13 +72,13 @@
 	<paragraph top="13.5+54*1+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*1+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*1+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*1+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*1+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*1+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*1+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*1+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*1+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*1+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*1+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*1+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*1+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -91,13 +91,13 @@
 	<paragraph top="13.5+54*1+6" left="15+95+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*1+8" left="15+95+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*1+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*1+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*1+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*1+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
 	<paragraph top="13.5+54*1+25" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*1+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*1+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*1+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*1+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*1+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*1+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -110,13 +110,13 @@
 	<paragraph top="13.5+54*2+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*2+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*2+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*2+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*2+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*2+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*2+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*2+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*2+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*2+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*2+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*2+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*2+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -129,13 +129,13 @@
 	<paragraph top="13.5+54*2+6" left="15+95+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*2+8" left="15+95+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*2+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*2+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*2+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*2+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
 	<paragraph top="13.5+54*2+25" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*2+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*2+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*2+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*2+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*2+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*2+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -148,13 +148,13 @@
 	<paragraph top="13.5+54*3+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*3+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*3+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*3+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*3+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*3+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*3+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*3+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*3+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*3+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*3+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*3+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*3+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -167,13 +167,13 @@
 	<paragraph top="13.5+54*3+6" left="15+95+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*3+8" left="15+95+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*3+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*3+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*3+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*3+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
 	<paragraph top="13.5+54*3+25" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*3+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*3+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*3+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*3+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*3+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*3+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -186,13 +186,13 @@
 	<paragraph top="13.5+54*4+6" left="15+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*4+8" left="15+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*4+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*4+11" left="15+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*4+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*4+25" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
         <paragraph top="13.5+54*4+25" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*4+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*4+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*4+30" left="15+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*4+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*4+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*4+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
@@ -205,13 +205,13 @@
 	<paragraph top="13.5+54*4+6" left="15+95+5" fontsize="7" fontstyle="B" position="absolute" border="0" width="60" textalign="L">INTERVENTO DI PROTEZIONE CIVILE</paragraph>
 	<image top="13.5+54*4+8" left="15+95+60" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
 
-	<paragraph top="13.5+54*4+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="13.5+54*4+11" left="15+95+6" fill="1" fillcolor="#004487" fontsize="7" lineheight="4" fontstyle="B" fontcolor="#ffffff" position="absolute" border="0" width="44.6" textalign="L"><!-- $Include var/templates/it/nomecampo.txt --></paragraph>
 
-	<paragraph top="13.5+54*4+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Operatore</paragraph>
+	<paragraph top="13.5+54*4+25" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Ospite</paragraph>
 	<paragraph top="13.5+54*4+25" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${nome} ${cognome}</paragraph>
 
-	<paragraph top="13.5+54*4+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20"></paragraph>
-	<paragraph top="13.5+54*4+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
+	<paragraph top="13.5+54*4+30" left="15+95+1" lineheight="5" fontsize="7" textalign="R" position="absolute" border="0" width="20">Tenda</paragraph>
+	<paragraph top="13.5+54*4+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${tenda}</paragraph>
 
 	<paragraph top="13.5+54*4+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
 	<barcode y="13.5+54*4+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>

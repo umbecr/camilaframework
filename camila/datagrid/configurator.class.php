@@ -1567,7 +1567,8 @@ class configurator {
                 foreach($opts as $key=>$value)
                 {
                     $this->menuitems_script .= "\$jarr=Array();\n";
-                    $this->menuitems_script .= "\$jarr['url'] = \"javascript:camila_inline_update_selected('".$field."','".$value."')\";\n";
+                    $this->menuitems_script .= "\$jarr['url'] = \"javascript:camila_inline_update_selected('".$field."','".str_replace("\"", "\\\"", $value)."')\";\n";
+                    //$this->menuitems_script .= "\$jarr['url'] = \"javascript:camila_inline_update_selected('".$field."','".$value."')\";\n";
                     $this->menuitems_script .= "\$jarr['visible'] = 'yes';\n";
                     $this->menuitems_script .= "\$jarr['short_title'] = '".$value."';\n";
                     $this->menuitems_script .= "\$jarr['parent'] = '".$field."';\n";

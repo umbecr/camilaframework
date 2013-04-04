@@ -21,7 +21,7 @@
 	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 </page>
 <!-- $EndBlock form -->
@@ -43,7 +43,7 @@
 	<paragraph top="13.5+54*0+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*0+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row1 -->
 
@@ -62,7 +62,7 @@
 	<paragraph top="13.5+54*0+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*0+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*0+40.5" x="15+95+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*0+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row2 -->
 
@@ -81,7 +81,7 @@
 	<paragraph top="13.5+54*1+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*1+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*1+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*1+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row3 -->
 
@@ -100,7 +100,7 @@
 	<paragraph top="13.5+54*1+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*1+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*1+40.5" x="15+95+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*1+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row4 -->
 
@@ -119,7 +119,7 @@
 	<paragraph top="13.5+54*2+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*2+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*2+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*2+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row5 -->
 
@@ -138,7 +138,7 @@
 	<paragraph top="13.5+54*2+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*2+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*2+40.5" x="15+95+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*2+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row6 -->
 
@@ -157,7 +157,7 @@
 	<paragraph top="13.5+54*3+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*3+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*3+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*3+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row7 -->
 
@@ -176,7 +176,7 @@
 	<paragraph top="13.5+54*3+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*3+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*3+40.5" x="15+95+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*3+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row8 -->
 
@@ -195,7 +195,7 @@
 	<paragraph top="13.5+54*4+30" left="15+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*4+41.1" left="15+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*4+40.5" x="15+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*4+40.5" x="15+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row9 -->
 
@@ -214,7 +214,7 @@
 	<paragraph top="13.5+54*4+30" left="15+95+21" lineheight="5" font="courier" fontsize="6" position="absolute" border="1" width="60">${organizzazione/ente/societa'}</paragraph>
 
 	<paragraph top="13.5+54*4+41.1" left="15+95+1" fontsize="7" textalign="R" position="absolute" border="0" width="20">Bar Code</paragraph>
-	<barcode y="13.5+54*4+40.5" x="15+95+21" height="6" width=".2" position="absolute" barcode="${codice badge}" norm="code39extend"/>
+	<barcode y="13.5+54*4+40.5" x="15+95+21" height="6" width=".3" position="absolute" barcode="${codice badge}" norm="code39extend"/>
 
 <!-- $EndBlock row10 -->
 

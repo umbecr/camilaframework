@@ -1016,6 +1016,7 @@
 	
 	function &_Execute($sql,$inputarr=false)
 	{
+//echo $sql;
 		if ($this->debug) {
 			global $ADODB_INCLUDED_LIB;
 			if (empty($ADODB_INCLUDED_LIB)) include(ADODB_DIR.'/adodb-lib.inc.php');
@@ -1884,6 +1885,8 @@
 			return $false;
 		}
 		$ret = false;
+
+
 		if ($sql) $ret = $this->Execute($sql);
 		if ($ret) $ret = true;
 		return $ret;

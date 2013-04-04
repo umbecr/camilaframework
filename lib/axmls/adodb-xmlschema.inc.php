@@ -1287,7 +1287,8 @@ class adoSchema {
 	function adoSchema( &$db ) {
 		// Initialize the environment
 		$this->mgq = get_magic_quotes_runtime();
-		set_magic_quotes_runtime(0);
+		//CAMILA FRAMEWORK:Commented (now deprecated)
+		//set_magic_quotes_runtime(0);
 		
 		$this->debug = $this->db->debug;
 		$this->db =& $db;

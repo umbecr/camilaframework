@@ -6,6 +6,9 @@ $_CAMILA['page']->camila_worktable = true;
 
 $wt_id = substr($_SERVER['PHP_SELF'], 12, -4);
 
+if (intval($wt_id) > 0)
+    $_CAMILA['page']->camila_worktable_id = $wt_id;
+
 function worktable_get_safe_temp_filename($name) {
     global $_CAMILA;
     return CAMILA_TMP_DIR . '/lastval_' . $_CAMILA['lang'] . '_' . preg_replace('/[^a-z]/', '', strtolower($name));
@@ -44,9 +47,13 @@ if (camila_form_in_update_mode(worktable_worktable4)) {
     require_once(CAMILA_DIR . 'datagrid/elements/form/datetime.php');
 
     
+    require_once(CAMILA_DIR . 'datagrid/elements/form/integer.php');
+    
     require_once(CAMILA_DIR . 'datagrid/elements/form/textbox.php');
     
     require_once(CAMILA_DIR . 'datagrid/elements/form/static_listbox.php');
+    
+    require_once(CAMILA_DIR . 'datagrid/elements/form/date.php');
     
     require_once(CAMILA_DIR . 'datagrid/elements/form/datetime.php');
     
@@ -54,16 +61,22 @@ if (camila_form_in_update_mode(worktable_worktable4)) {
     
     require_once(CAMILA_DIR . 'datagrid/elements/form/textarea.php');
     
-    require_once(CAMILA_DIR . 'datagrid/elements/form/date.php');
-    
-    require_once(CAMILA_DIR . 'datagrid/elements/form/integer.php');
-    
 
     $form = new dbform('worktable_worktable4', 'id');
 
-    $form->caninsert = true;
-    $form->candelete = true;
-    $form->canupdate = true;
+    if ($_CAMILA['adm_user_group'] != CAMILA_ADM_USER_GROUP)
+    {
+        $form->caninsert = true;
+        $form->candelete = true;
+        $form->canupdate = true;
+    }
+    else
+    if ($_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP)
+    {
+        $form->caninsert = true;
+        $form->candelete = true;
+        $form->canupdate = true;
+    }
 
     $form->drawrules = true;
     $form->drawheadersubmitbutton = true;
@@ -71,7 +84,7 @@ if (camila_form_in_update_mode(worktable_worktable4)) {
     new form_textbox($form, 'id', camila_get_translation('camila.worktable.field.id'));
     if (is_object($form->fields['id'])) {
         if ($_REQUEST['camila_update'] == 'new' && !isset($_REQUEST['camila_phpform_sent'])) {
-            $_CAMILA['db_genid'] = $_CAMILA['db']->GenID('worktableseq', 100000);
+            $_CAMILA['db_genid'] = $_CAMILA['db']->GenID(CAMILA_APPLICATION_PREFIX.'worktableseq', 100000);
             $form->fields['id']->defaultvalue = $_CAMILA['db_genid'];
         }
         $form->fields['id']->updatable = false;
@@ -94,18 +107,19 @@ if (is_object($form->fields['carattere'])) $form->fields['carattere']->defaultva
 
     
     new form_integer($form, 'dimensionetitolo', 'Dimensione titolo', false, 5, 255, '');
-if (is_object($form->fields['dimensionetitolo'])) $form->fields['dimensionetitolo']->defaultvalue = worktable_get_next_autoincrement_value('worktable_worktable4','dimensionetitolo');
 if (is_object($form->fields['dimensionetitolo'])) $form->fields['dimensionetitolo']->defaultvalue = worktable_parse_default_expression('44', $form);
 
     
     new form_integer($form, 'dimensionetesto', 'Dimensione testo', false, 5, 255, '');
-if (is_object($form->fields['dimensionetesto'])) $form->fields['dimensionetesto']->defaultvalue = worktable_get_next_autoincrement_value('worktable_worktable4','dimensionetesto');
 if (is_object($form->fields['dimensionetesto'])) $form->fields['dimensionetesto']->defaultvalue = worktable_parse_default_expression('22', $form);
 
     
 
-    new form_static_listbox($form, 'cf_bool_is_selected', camila_get_translation('camila.worktable.field.selected'), camila_get_translation('camila.worktable.options.noyes'));
-    new form_static_listbox($form, 'cf_bool_is_special', camila_get_translation('camila.worktable.field.special'), camila_get_translation('camila.worktable.options.noyes'));
+    if (CAMILA_WORKTABLE_SPECIAL_ICON_ENABLED || $_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP)
+        new form_static_listbox($form, 'cf_bool_is_selected', camila_get_translation('camila.worktable.field.selected'), camila_get_translation('camila.worktable.options.noyes'));
+
+    if (CAMILA_WORKTABLE_SELECTED_ICON_ENABLED || $_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP)
+        new form_static_listbox($form, 'cf_bool_is_special', camila_get_translation('camila.worktable.field.special'), camila_get_translation('camila.worktable.options.noyes'));
 
     if ($_REQUEST['camila_update'] != 'new') {
 
@@ -144,6 +158,8 @@ if (is_object($form->fields['dimensionetesto'])) $form->fields['dimensionetesto'
 
     new form_textbox($form, 'mod_num', camila_get_translation('camila.worktable.field.mod_num'));
     if (is_object($form->fields['mod_num'])) $form->fields['mod_num']->updatable = false;
+
+
 }
 
     
@@ -158,22 +174,101 @@ if (is_object($form->fields['dimensionetesto'])) $form->fields['dimensionetesto'
 
       $report_fields = 'id,cf_bool_is_special,cf_bool_is_selected,data1,oggetto,testo,carattere,dimensionetitolo,dimensionetesto,created,created_by,created_by_surname,created_by_name,last_upd,last_upd_by,last_upd_by_surname,last_upd_by_name,mod_num';
       $default_fields = 'cf_bool_is_special,cf_bool_is_selected,data1,oggetto,testo,carattere,dimensionetitolo,dimensionetesto';
+
+      if (isset($_REQUEST['camila_rest'])) {
+          $report_fields = str_replace('cf_bool_is_special,', '', $report_fields);
+          $report_fields = str_replace('cf_bool_is_selected,', '', $report_fields);
+          $default_fields = $report_fields;
+      }
+
       if ($_CAMILA['page']->camila_exporting())
           $mapping = 'created=Data creazione#last_upd=Ultimo aggiornamento#last_upd_by=Utente ult. agg.#last_upd_src=Sorgente Ult. agg.#last_upd_by_name=Nome Utente ult. agg.#last_upd_by_surname=Cognome Utente ult. agg.#mod_num=Num. mod.#id=Cod. riga#created_by=Utente creaz.#created_src=Sorgente creaz.#created_by_surname=Cognome Utente creaz.#created_by_name=Nome Utente creaz.#cf_bool_is_special=contrassegnati come speciali#cf_bool_is_selected=selezionati#data1=Data#oggetto=Oggetto#testo=Testo#carattere=Carattere#dimensionetitolo=Dimensione titolo#dimensionetesto=Dimensione testo';
       else
           $mapping = 'created=Data creazione#last_upd=Ultimo aggiornamento#last_upd_by=Utente ult. agg.#last_upd_src=Sorgente Ult. agg.#last_upd_by_name=Nome Utente ult. agg.#last_upd_by_surname=Cognome Utente ult. agg.#mod_num=Num. mod.#id=Cod. riga#created_by=Utente creaz.#created_src=Sorgente creaz.#created_by_surname=Cognome Utente creaz.#created_by_name=Nome Utente creaz.#cf_bool_is_special=contrassegnati come speciali#cf_bool_is_selected=selezionati#data1=Data#oggetto=Oggetto#testo=Testo#carattere=Carattere#dimensionetitolo=Dim. titolo#dimensionetesto=Dim. testo';
 
-      $stmt = 'select ' . $report_fields . ' from worktable_worktable4';
-      $report = new report($stmt, '', 'data1', 'desc', $mapping, null, 'id', 'cf_bool_is_special,cf_bool_is_selected,data1,oggetto,testo,carattere,dimensionetitolo,dimensionetesto', '', true, true);
+      $filter = '';
 
-      if (true)
+      if ($_CAMILA['user_visibility_type']=='personal')
+          $filter= ' where created_by='.$_CAMILA['db']->qstr($_CAMILA['user']);
+
+      $stmt = 'select ' . $report_fields . ' from worktable_worktable4';
+      $report = new report($stmt.$filter, '', 'data1', 'desc', $mapping, null, 'id', 'cf_bool_is_special,cf_bool_is_selected,data1,oggetto,testo,carattere,dimensionetitolo,dimensionetesto', '', (isset($_REQUEST['camila_rest'])) ? false : true, (isset($_REQUEST['camila_rest'])) ? false : true);
+
+      if (true && !isset($_REQUEST['camila_rest'])) {
           $report->additional_links = Array(camila_get_translation('camila.report.insertnew') => basename($_SERVER['PHP_SELF']) . '?camila_update=new');
 
-      if ($_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP) {
+          $myImage1 = new CHAW_image(CAMILA_IMG_DIR . 'wbmp/add.wbmp', CAMILA_IMG_DIR . 'png/add.png', '-');
+          $report->additional_links_images = Array(camila_get_translation('camila.report.insertnew') => $myImage1);
+
+          if (($_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP) || CAMILA_WORKTABLE_IMPORT_ENABLED)          
           $report->additional_links[camila_get_translation('camila.worktable.import')] = 'cf_worktable_wizard_step4.php?camila_custom=' . $wt_id . '&camila_returl=' . urlencode($_SERVER['PHP_SELF']);
+      }
+
+      if ($_CAMILA['adm_user_group'] == CAMILA_ADM_USER_GROUP) {
           $report->additional_links[camila_get_translation('camila.worktable.rebuild')] = 'cf_worktable_admin.php?camila_custom=' . $wt_id . '&camila_worktable_op=rebuild' . '&camila_returl=' . urlencode($_SERVER['PHP_SELF']);
           $report->additional_links[camila_get_translation('camila.worktable.reconfig')] = 'cf_worktable_wizard_step2.php?camila_custom=' . $wt_id . '&camila_returl=' . urlencode($_SERVER['PHP_SELF']);
       }
+
+      if (CAMILA_WORKTABLE_CONFIRM_VIA_MAIL_ENABLED) {
+          $report->additional_links[camila_get_translation('camila.worktable.confirm')] = basename($_SERVER['PHP_SELF']) . '?camila_visible_cols_only=y&camila_worktable_export=dataonly&camila_pagnum=-1&camila_export_filename=WORKTABLE&camila_export_action=sendmail&hidden=camila_xls&camila_export_format=camila_xls&camila_xls=Esporta';
+
+          $myImage1 = new CHAW_image(CAMILA_IMG_DIR . 'wbmp/accept.wbmp', CAMILA_IMG_DIR . 'png/accept.png', '-');
+          $report->additional_links_images[camila_get_translation('camila.worktable.confirm')]=$myImage1;
+
+      }
+
+      $report->formulas=Array();
+      $report->queries=Array();
+
+      $jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('data1','')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'MODIFICA Data...';
+$jarr['parent'] = 'index.php';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('oggetto','')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'MODIFICA Oggetto...';
+$jarr['parent'] = 'index.php';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = 'carattere';
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'MODIFICA Carattere';
+$jarr['parent'] = 'index.php';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('carattere','helvetica')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'helvetica';
+$jarr['parent'] = 'carattere';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('carattere','times')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'times';
+$jarr['parent'] = 'carattere';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('carattere','courier')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'courier';
+$jarr['parent'] = 'carattere';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('carattere','zapfdingbats')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'zapfdingbats';
+$jarr['parent'] = 'carattere';
+$report->menuitems[]=$jarr;
+$jarr=Array();
+$jarr['url'] = "javascript:camila_inline_update_selected('carattere','symbol')";
+$jarr['visible'] = 'yes';
+$jarr['short_title'] = 'symbol';
+$jarr['parent'] = 'carattere';
+$report->menuitems[]=$jarr;
+
 
       $report->process();
       $report->draw();

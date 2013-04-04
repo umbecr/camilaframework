@@ -163,6 +163,7 @@ define("HAW_SIM_SKIN",    2); // skin-based (phone-) simulator
 
 function isUTF8($string)
 {
+
    if (is_array($string))
    {
        $enc = implode('', $string);
@@ -170,9 +171,17 @@ function isUTF8($string)
    }
    else
    {
-       return (utf8_encode(utf8_decode($string)) == $string);
+//       return (utf8_encode(utf8_decode($string)) == $string);
+
+         if (preg_match('!\S!u', $string))
+             return true;
+         else
+             return false;
+
    }
 }
+
+
 
 
 function HAW_specchar($input, $deck)

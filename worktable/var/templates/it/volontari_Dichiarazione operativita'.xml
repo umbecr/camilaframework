@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+
+<pdf creator="http://protezionet.blogspot.com">
+
+<body format='A4' unit='mm' margins='10'>
+
+<!-- $BeginBlock form -->
+<page font="helvetica">
+
+</page>
+<!-- $EndBlock form -->
+
+<page font="helvetica" fontsize="6">
+
+
+	<image top="15" left="20" height="15" width="15" position="absolute" file="<!-- $Include var/templates/it/logo.txt -->" />
+	<paragraph top="15" left="38" fontsize="12" fontstyle="B" position="absolute" border="0" width="150" textalign="L"><!-- $Include var/templates/it/evento.txt --></paragraph>
+	<paragraph top="20" left="38" fontsize="12" fontstyle="B" position="absolute" border="0" width="150" textalign="L"><!-- $Include var/templates/it/comune.txt --></paragraph>
+	<paragraph top="25" left="38" fontcolor="red" fontsize="12" fontstyle="B" position="absolute" border="0" width="150" textalign="L"><!-- $Include var/templates/it/segreteriacampo.txt --> <!-- $Include var/templates/it/nomecampo.txt --></paragraph>
+
+	<paragraph position="absolute" left="0" top="35" width="180" fontsize="14" lineheight="8" textalign="L" border="0">
+DICHIARAZIONE OPERATIVITA'
+
+Io sottoscritto/a ______________________ in qualità di Legale Rappresentante
+dell’Organizzazione ${organizzazione}
+
+
+                                                            DICHIARO
+
+che tutti i volontari impiegati durante l’evento in oggetto: 
+ - sono assicurati per le attività di protezione civile;
+ - non soffrono di patologie invalidanti e pertanto sono idonei a svolgere compiti operativi.
+
+Dichiaro inoltre che i seguenti volontari, pur sprovvisti di tesserino regionale di riconoscimento sono da considerarsi operativi:
+_________________________________
+_________________________________
+_________________________________
+_________________________________
+_________________________________
+_________________________________
+
+
+        Data                                                    Firma del Legale Rappresentante
+    ________                                          ________________________________
+
+</paragraph>
+
+
+</page>
+
+</body>
+</pdf>

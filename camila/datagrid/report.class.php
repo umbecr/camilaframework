@@ -590,7 +590,7 @@ $this->totalconditions=$count-1;
           global $_CAMILA;
           $_CAMILA['db']->SetFetchMode(ADODB_FETCH_ASSOC);
           $result = $_CAMILA['db']->Execute($stmt);
-          
+         
           if ($result === false)
               camila_error_page(camila_get_translation('camila.sqlerror') . ' ' . $_CAMILA['db']->ErrorMsg());
           
